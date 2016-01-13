@@ -1,0 +1,23 @@
+<html>
+ <head>
+  <title>My Angular Registration</title>
+ </head>
+ <body>
+  <div ng-app="myApp" ng-controller="usersCtrl"> 
+	<table>
+	  <tr ng-repeat="x in names">
+		<td>{{ x.Name }}</td>
+		<td>{{ x.Country }}</td>
+	  </tr>
+	</table>
+  </div>
+ </body>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('usersCtrl', function($scope, $http) {
+    $http.get("users_mysql.php")
+    .success(function (response) {$scope.names = response.records;});
+});
+</script>
+</html>
